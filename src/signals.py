@@ -55,3 +55,40 @@ def short_term_trend_signal(
         scores[n] = (observed - expected) / expected
 
     return scores
+
+
+
+def long_term_trend_signal(
+    df: pd.DataFrame,
+    min_number: int,
+    max_number: int,
+) -> Dict[int, float]:
+    """
+    Compute long-term frequency deviation for each number.
+
+    Parameters:
+        df (pd.DataFrame): Validated draw data (single lottery)
+        min_number (int): Minimum valid number
+        max_number (int): Maximum valid number
+
+    Returns:
+        Dict[int, float]: Per-number long-term bias scores
+    """
+    counts = Counter()
+    for numbers in df["numbers"]:
+        counts.update(numbers)
+
+    total_draws = len(df)
+    numbers_per_draw = len(df.iloc[0]["numbers"])
+
+    expected = (total_draws * numbers_per_draw) / (
+        max_number - min_number + 1
+    )
+
+    scores = {}
+
+    for n in range(min_number, max_number + 1):
+        observed = counts.get(n, 0)
+        scores[n] = (observed - expected) / expected
+
+    return scores
