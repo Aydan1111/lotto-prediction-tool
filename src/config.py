@@ -58,3 +58,38 @@ LINE_MODE_PARAMS = {
     "enforce_balance": True,
     "randomness_blend": 0.25,  # 0 = fully biased, 1 = fully random
 }
+
+
+# =========================
+# LOTTERY PROFILES
+# =========================
+
+LOTTERY_PROFILES = {
+    "irish_lotto": {
+        "min": 1,
+        "max": 47,
+        "numbers_per_draw": 6,
+        "bonus": False,
+    },
+    "daily_million": {
+        "min": 1,
+        "max": 39,
+        "numbers_per_draw": 6,
+        "bonus": False,
+    },
+    "uk_lotto": {
+        "min": 1,
+        "max": 59,
+        "numbers_per_draw": 6,
+        "bonus": False,
+    },
+    "euromillions": {
+        "min": 1,
+        "max": 50,
+        "numbers_per_draw": 5,
+        "bonus": True,
+        "bonus_min": 1,
+        "bonus_max": 12,
+        "bonus_count": 2,
+    },
+}
