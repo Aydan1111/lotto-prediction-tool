@@ -92,3 +92,46 @@ def long_term_trend_signal(
         scores[n] = (observed - expected) / expected
 
     return scores
+
+
+
+def hot_cold_gap_signal(
+    df: pd.DataFrame,
+    min_number: int,
+    max_number: int,
+) -> Dict[int, float]:
+    """
+    Compute hot/cold gap-based signal for each number.
+
+    Parameters:
+        df (pd.DataFrame): Validated draw data (single lottery)
+        min_number (int): Minimum valid number
+        max_number (int): Maximum valid number
+
+    Returns:
+        Dict[int, float]: Per-number gap-based scores (0–1)
+    """
+    total_draws = len(df)
+    last_seen = {}
+
+    # Iterate in order so later draws overwrite earlier ones
+    for idx, numbers in enumerate(df["numbers"]):
+        for n in numbers:
+            last_seen[n] = idx
+
+    # Compute gaps
+    gaps = {}
+    for n in range(min_number, max_number + 1):
+        if n in last_seen:
+            gap = total_draws - last_seen[n] - 1
+        else:
+            gap = total_draws  # never seen → max gap
+
+        gaps[n] = gap
+
+    max_gap = max(gaps.values()) or 1
+
+    # Normalize gaps to 0–1
+    scores = {n: gaps[n] / max_gap for n in gaps}
+
+    return scores
