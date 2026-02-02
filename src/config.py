@@ -93,3 +93,23 @@ LOTTERY_PROFILES = {
         "bonus_count": 2,
     },
 }
+
+
+ "powerball": {
+        "min": 1,
+        "max": 69,
+        "numbers_per_draw": 5,
+        "bonus": True,
+        "bonus_min": 1,
+        "bonus_max": 26,
+        "bonus_count": 1,
+    },
+    "megamillions": {
+        "min": 1,
+        "max": 70,
+        "numbers_per_draw": 5,
+        "bonus": True,
+        "bonus_min": 1,
+        "bonus_max": 25,
+        "bonus_count": 1,
+    },
