@@ -66,3 +66,24 @@ If no meaningful bias is present, the system should naturally collapse toward ra
 
 This tool is for exploratory and entertainment purposes only.
 It does not guarantee outcomes and does not claim to beat lottery odds.
+
+
+## How to Add Your Own Historical Data
+
+This tool does not fetch draw data automatically.
+
+To add your own data:
+1. Visit the official results archive for your lottery
+2. Copy past draw results into a spreadsheet (Excel / Google Sheets)
+3. Format columns to match `example_draws.csv`
+4. Export as CSV and place it in this folder
+
+### Common Sources
+- Irish Lotto / Daily Million / EuroMillions: https://www.irishlottery.com/archive
+- UK Lotto: https://www.lottery.co.uk/lotto/results/past
+- Powerball / Mega Millions: Official US lottery sites
+
+### Important Notes
+- Numbers must be comma-separated
+- Bonus balls go in the `bonus` column (comma-separated if more than one)
+- The `lottery` column must match a key in `LOTTERY_PROFILES`
